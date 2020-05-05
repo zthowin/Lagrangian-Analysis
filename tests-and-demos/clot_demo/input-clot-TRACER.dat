@@ -1,0 +1,63 @@
+Problem dimension = 2
+
+Debug mode = False
+
+Project directory = /full/path/to/clot_demo/
+
+Flow data directory = velocity/
+
+Flow data file tag = Velocity-LS-M2-0pL-
+
+Flow data field name = Velocity
+
+Tracer input file = clot-boundary-release.vtk
+
+Discrete element input file = ENSEMBLE : none ; TRANSFORM : none
+
+Lagrangian field output file = none
+
+Lagrangian tracer output file = output/clot-TRACER-.vtk
+
+Data file index = START : 90 ; STOP : 179 ; DELTA : 1 ; COUNT : 90
+
+Data file timing = START : 0.0 ; STOP : 0.9 ; DELTA : 0.01 ; PERIODIC : True
+
+Output file index = START : 0 ; STOP : 89 ; DELTA : 1
+
+Output file timing = START : 0.0 ; INTERVAL : 0.01
+
+Simulation timing = START : 0.0 ; STOP : 0.9 ; DELTA : 0.0005
+
+Integration setup = SCHEME : rk4
+
+Fixed mesh = True
+
+Flow model = 0
+
+Lagrangian field calculations = FTLE : True ; Stretch : True ; Strain : False
+
+Unit vector 1 = 1.0 ; 0.0 ; 0.0
+Unit vector 2 = 0.0 ; 1.0 ; 0.0
+Unit vector 3 = 0.0 ; 0.0 ; 0.0
+
+Standard flow domain geometry attributes = ANCHOR : 0.0 , 0.0 , 0.0 ; 45.0 ; 6.0 ; 0.0 ; R0 : 0.0
+
+Standard flow domain boundary condition tags = S0 : 0 ; S1 : none ; S2 : none ; S3 : none ; S4 : none ; S5 : none
+
+Standard Lagrangian field domain geometry attributes = ANCHOR : 0.0 ; 0.0 ; 0.0 ; 45.0 ; 6.0 ; 0.0 ; DX : 0.05 ; DY : 0.05 ; DZ : 0.0 ; R0 : 0.0
+
+Particle injection domain geometry attributes = ANCHOR : 0.0 ; 0.0 ; 0.0 ; 0.1 ; 0.1 ; 0.1 ; DX : 0.01 ; DY : 0.01 ; DZ : 0.01
+
+Particle injection = True ; NUMBER : 90 ; START : 0.0 ; INTERVAL : 0.01
+
+Flow properties = VISCOSITY : 1.0 ; DENSITY : 1.0
+
+Particle properties = DENSITY : 1.0 ; DIFFUSION : 1.0e-6
+
+Surface Normals = CONVERT : False ; FLIP : False ; SCALING : 1.0
+
+Particle in cell locator = OCT : True ; TRE : False ; BSP : False
+
+Particle pathlines = False ; SUBSAMPLE : 0 , 0 ; DDGCALC : False
+
+Residence time module setup = MODE : mapped ; ROI : none ; INJECT : none ; 0

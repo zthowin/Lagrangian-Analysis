@@ -1,0 +1,63 @@
+Problem dimension = 2
+
+Debug mode = False
+
+Project directory = /full/path/to/double_gyre_demo/
+
+Flow data directory = none
+
+Flow data file tag = none  
+
+Flow data field name = none
+
+Tracer input file = none
+
+Discrete element input file = ENSEMBLE : none ; TRANSFORM : none
+
+Lagrangian field output file = output/DG-FTLE-.vtk
+
+Lagrangian tracer output file = none
+
+Data file index = START : 0 ; STOP : 0 ; DELTA : 0 ; COUNT : 0
+
+Data file timing = START : 0.0 ; STOP : 0.0 ; DELTA : 0.0 ; PERIODIC : False
+
+Output file index = START : 0 ; STOP : 0 ; DELTA : 0
+
+Output file timing = START : 0.0 ; INTERVAL : 0.00
+
+Simulation timing = START : 0.0 ; STOP : 1.0 ; DELTA : 0.001
+
+Integration setup = SCHEME : euler
+
+Fixed mesh = True
+
+Flow model = 1
+
+Lagrangian field calculations = FTLE : True ; Stretch : False ; Strain : False
+
+Unit vector 1 = 1.0 ; 0.0 ; 0.0
+Unit vector 2 = 0.0 ; 1.0 ; 0.0
+Unit vector 3 = 0.0 ; 0.0 ; 0.0
+
+Standard flow domain geometry attributes = ANCHOR : 0.0 , 0.0 , 0.0 ; 2.0 ; 1.0 ; 0.0 ; R0 : 0.0
+
+Standard flow domain boundary condition tags = S0 : 2 ; S1 : none ; S2 : none ; S3 : none ; S4 : none ; S5 : none
+
+Standard Lagrangian field domain geometry attributes = ANCHOR : 0.0 ; 0.0 ; 0.0 ; 2.0 ; 1.0 ; 0.0 ; DX : 0.01 ; DY : 0.01 ; DZ : 0.0 ; R0 : 0.0
+
+Particle injection domain geometry attributes = ANCHOR : 0.0 ; 0.0 ; 0.0 ; 0.0 ; 0.0 ; 0.0 ; DX : 0.0 ; DY : 0.0 ; DZ : 0.0
+
+Particle injection = False ; NUMBER : 0 ; START : 0.0 ; INTERVAL : 0.0
+
+Flow properties = VISCOSITY : 1.0 ; DENSITY : 1.0
+
+Particle properties = DENSITY : 1.0 ; DIFFUSION : 1.0e-6
+
+Surface Normals = CONVERT : False ; FLIP : False ; SCALING : 1.0
+
+Particle in cell locator = OCT : True ; TRE : False ; BSP : False
+
+Particle pathlines = False ; SUBSAMPLE : 1 , 1 ; DDGCALC : False
+
+Residence time module setup = MODE : mapped ; ROI : none ; INJECT : none ; 0
