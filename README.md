@@ -80,6 +80,7 @@ This input file has computed the forward FTLE for steady double-gyre flow for 1.
 
 * Navigate to the example directory `tests-and-demos/clot_demo`
 * Create the directories `clot_demo/velocity/` and `clot_demo/output`
+* Download 'clot-velocity.zip' from [Google Drive](https://drive.google.com/file/d/1QELOELqdnk_DjXjSWpK6zE2UzJx_h4wp/view?usp=sharing)
 * Unzip `clot-velocity.zip` and move the .vtu's to `clot_demo/velocity`
 * Navigate to `clot_demo` and open the provided file `input-clot-FTLE.dat`
 * Replace the correct pathname in `Lagrangian-Toolkit` for entry `Project directory`:
@@ -102,6 +103,7 @@ python3 codeLagrangian_v2.py /Lagrangian-Toolkit/tests-and-demos/clot_demo/input
 
 * Navigate to the example directory `tests-and-demos/clot_demo`
 * Create the directories `clot_demo/velocity/` and `clot_demo/output`
+* Download 'clot-velocity.zip' from [Google Drive](https://drive.google.com/file/d/1QELOELqdnk_DjXjSWpK6zE2UzJx_h4wp/view?usp=sharing)
 * Unzip `clot-velocity.zip` and move the .vtu's to `clot_demo/velocity`
 * Navigate to `clot_demo` and open the provided file `input-clot-TRACER.dat`
 * Replace the correct pathname in `Lagrangian-Toolkit` for entry `Project directory`:
