@@ -16,11 +16,11 @@ This package has not yet been tested on Windows OS nor Mac OS. It is advised tha
 
 ## 2. LAPACK Installation Instructions
 
-First, download the make.inc file from this gitlab.
+First, download `make-LAPACK.inc` from this repository and rename it `make.inc`
 
 Then, download the LAPACK .tar.gz for version 3.8.0 from https://www.netlib.org/lapack/ and extract it into a separate folder.
 
-Copy the make.inc into the LAPACK root directory (there should be a make.inc.example in this folder which is a general template -- the make.inc provided in our repository has been customized with optimization and static library linking flags, the latter of which must be included in the options and loader flags).
+Copy `make.inc` into the LAPACK root directory (there should be a make.inc.example in this folder which is a general template -- the `make.inc` provided in this repository has been customized with optimization and static library linking flags, the latter of which must be included in the options and loader flags).
 
 Navigate to the root directory and run the makefile to install LAPACK.
 
@@ -31,13 +31,12 @@ make
 
 ## 3. Installation Instructions
 
-Download or clone the library. Copy the .a files from the LAPACK folder into the root directory for the toolkit library.
+Download or clone the library. Copy the .a files from the LAPACK folder into the `src` directory for the toolkit library.
 
-Navigate to the root directory and run the compile shell script:
+Navigate to the `src` directory and run the `makefile`:
 
 ```bash
-chmod +x compile.sh
-./compile.sh
+make
 ```
 
 ## 4. Usage
@@ -69,7 +68,7 @@ Project directory: /Lagrangian-Toolkit/tests-and-demos/double_gyre_demo
 
 ```bash
 cd /Lagrangian-Toolkit/
-python3 codeLagrangian_v2.py /Lagrangian-Toolkit/test-and-demos/double_gyre_demo/input-DG.dat
+python3 /src/codeLagrangian_v2.py /Lagrangian-Toolkit/test-and-demos/double_gyre_demo/input-DG.dat
 ```
 
 This input file has computed the forward FTLE for steady double-gyre flow for 1.0s of advection time. There are two more input files in `double_gyre_demo` called `input-USDG.dat` and `input-BWDUSDG.dat` which will compute the forward and backward FTLE, respectively, for the unsteady double-gyre flow for 10.0s of advection time. Replace the project directory pathnames for both input files and run them as provided in the above syntax with their respective input file names.
@@ -94,7 +93,7 @@ Project directory: /Lagrangian-Toolkit/tests-and-demos/clot_demo/
 
 ```bash
 cd /Lagrangian-Toolkit/
-python3 codeLagrangian_v2.py /Lagrangian-Toolkit/tests-and-demos/clot_demo/input-clot-FTLE.dat
+python3 src/codeLagrangian_v2.py /Lagrangian-Toolkit/tests-and-demos/clot_demo/input-clot-FTLE.dat
 ```
 
 ### Clot Tracer Particle Example
@@ -117,5 +116,7 @@ Project directory: /Lagrangian-Toolkit/tests-and-demos/clot_demo/
 
 ```bash
 cd /Lagrangian-Toolkit/
-python3 codeTracersAdvection_v1.py /Lagrangian-Toolkit/tests-and-demos/clot_demo/input-clot-TRACER.dat
+python3 /src/codeTracersAdvection_v1.py /Lagrangian-Toolkit/tests-and-demos/clot_demo/input-clot-TRACER.dat
 ```
+
+There are a few other demos included in `tests-and-demos` which the user may run as indicated in the above examples.
