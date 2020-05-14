@@ -1,0 +1,24 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module multMatrices ! in 
+    interface  ! in :multMatrices
+        module matrixmult ! in :multMatrices:matrixMult.f90
+            use matmult_loop1
+            use matmult_loop2
+            use matmult_func
+            subroutine matrixmult_routine(a,b,c,n1,n2,n3,icase) ! in :multMatrices:matrixMult.f90:matrixmult
+                double precision dimension(n1,n2),intent(in) :: a
+                double precision dimension(n2,n3),intent(in),depend(n2) :: b
+                double precision dimension(n1,n3),intent(out),depend(n1,n3) :: c
+                integer, optional,intent(in),check(shape(a,0)==n1),depend(a) :: n1=shape(a,0)
+                integer, optional,intent(in),check(shape(a,1)==n2),depend(a) :: n2=shape(a,1)
+                integer, optional,intent(in),check(shape(b,1)==n3),depend(b) :: n3=shape(b,1)
+                integer intent(in) :: icase
+            end subroutine matrixmult_routine
+        end module matrixmult
+    end interface 
+end python module multMatrices
+
+! This file was auto-generated with f2py (version:2).
+! See http://cens.ioc.ee/projects/f2py2e/

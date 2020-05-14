@@ -1,0 +1,25 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module calculate__user__routines 
+    interface calculate_user_interface 
+        function func(x) result(x)! in callback_full.f90:callback_full:calculate:unknown_interface
+            double precision :: x
+        end function func
+    end interface calculate_user_interface
+end python module calculate__user__routines
+python module callback_full
+    interface
+        module callback_full ! in callback_full.f90
+            subroutine calculate(func,x,n) ! in callback_full.f90:callback_full
+                use calculate__user__routines
+                external func
+                double precision dimension(n), intent(in, out) :: x
+                integer, intent(in):: n
+            end subroutine calculate
+        end module callback_full
+    end interface
+end python module callback_full
+
+! This file was auto-generated with f2py (version:2).
+! See http://cens.ioc.ee/projects/f2py2e/
