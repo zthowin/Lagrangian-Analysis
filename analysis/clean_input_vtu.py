@@ -28,7 +28,7 @@ for clotGeo in ['HS', 'LS']:
         filename    = baseDir + velocityDir + 'Velocity-%s-%s-%spL000%s.vtu' %(clotGeo, struct, leakNo, add + str(fileInd))
 
         # Remove first cardiac cycle, extra file
-        if (fileInd < 90) or (fileInd == numFiles - 1):
+        if (fileInd < 90) or (fileInd >= numFiles - 1):
           os.remove(filename)
           print("Removed %s" %filename)
 
