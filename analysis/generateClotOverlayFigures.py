@@ -1,3 +1,11 @@
+#-------------------------------------------------------------------------
+# Helper script to generate FTLE figures for the clots with microstructure
+# with rigid geometry overlay (for ridge extraction)
+#
+# Author:       Zachariah Irwin
+# Institution:  University of Colroado Boulder
+# Last Edits:   May 2020
+#-------------------------------------------------------------------------
 import sys, os
 from paraview.simple import *
 

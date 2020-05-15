@@ -30,12 +30,14 @@ make
 ```
 
 ## 3. Installation Instructions
+**Note:** We will use `Lagrangian-Toolkit` as the placeholder for the name of the directory including the full package where the package was installed. You will need to edit this accordingly.
 
 Download or clone the library. Copy the .a files from the LAPACK folder into the `src` directory for the toolkit library.
 
 Navigate to the `src` directory and run the `makefile`:
 
 ```bash
+cd /Lagrangian-Toolkit/src/
 make
 ```
 
@@ -119,4 +121,5 @@ cd /Lagrangian-Toolkit/
 python3 /src/codeTracersAdvection_v1.py /Lagrangian-Toolkit/tests-and-demos/clot_demo/input-clot-TRACER.dat
 ```
 
-There are a few other demos included in `tests-and-demos` which the user may run as indicated in the above examples.
+### Other Demos
+There are two other demos--the calculations of FTLE fields for three interacting Lamb-Osseen vortices and a Bickley jet perturbed by a Rosby wave--included in `tests-and-demos` which the user may run in a similar fashion to the above examples. However, the user is warned that both demos are much more computationally expensive.

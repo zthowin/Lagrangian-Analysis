@@ -1,10 +1,11 @@
-#-------------------------------------------------------------------------------------------------
-# This is a helper script to plot field data along a given line.
+#----------------------------------------------------------------------------------------------
+# This is a helper script to plot field data along a given line. Here it is used to compare the
+# relative error between FlowVC and the Lagrangian toolkit.
 #
 # Author:       Zachariah Irwin
 # Institution:  University of Colorado, Boulder
-# Last Edit:    October 2019
-#-------------------------------------------------------------------------------------------------
+# Last Edit:    May 2020
+#----------------------------------------------------------------------------------------------
 import os
 import numpy as np
 import pandas as pd
@@ -22,8 +23,9 @@ w_T  = False
 fdls = True
 fdhs = False
 
-fvcDataDir    = '/home/zach/Documents/Mukherjee/FlowVC/examples/clot_fdls/'
+fvcDataDir    = '/dir/'
 
+# Hardcoded x coordinates to sample data along vertical line
 if fdls:
   horizontal_pos  = np.linspace(5., 27., 12, endpoint=True)
 if fdhs:
@@ -49,8 +51,8 @@ if not os.path.exists(pngDir):
     os.mkdir(pngDir)
 
 numPositions  = 12
-numFiles      = 90   # Number of files in the vtkDoubleArray dataset (91 for FDHS and FDLS)
-arcLength     = 6.0
+numFiles      = 90
+arcLength     = 6.0 # Domain height
 dataTiming    = 0.01
 
 plt.rc('text', usetex=True)
@@ -65,10 +67,10 @@ if makePlots:
       time = float(fileInd)*dataTiming
 
       fvcName = fvcCSVDir + 'Pos%i.%i.csv' %(posInd, fileInd)
-      dbjName = csvDir + 'Pos%i.%i.csv' %(posInd, fileInd)
+      LTName = csvDir + 'Pos%i.%i.csv' %(posInd, fileInd)
 
       fvcDF = pd.read_csv(fvcName)
-      dbjDF = pd.read_csv(dbjName)
+      LTDF = pd.read_csv(LTName)
 
       numDataPoints = fvcDF.shape[0] - 1
 
@@ -79,13 +81,13 @@ if makePlots:
       fvcFTLE  = fvcFTLE.to_numpy()
 
       if w_T:
-        dbjFTLE_T    = dbjDF['ftle - T']
-        dbjFTLE_T    = dbjFTLE_T.to_numpy()
+        LTFTLE_T    = LTDF['ftle - T']
+        LTFTLE_T    = LTFTLE_T.to_numpy()
 
         error = np.zeros(numDataPoints, dtype=np.float64)
         for point in range(numDataPoints):
-          localError   = np.linalg.norm(fvcFTLE[point] - dbjFTLE_T[point])#/np.linalg.norm(fvcFTLE[point])
-          if np.isnan(localError) and (np.linalg.norm(fvcFTLE[point] - dbjFTLE_T[point]) == 0. and np.linalg.norm(fvcFTLE[point]) == 0.):
+          localError   = np.linalg.norm(fvcFTLE[point] - LTFTLE_T[point])#/np.linalg.norm(fvcFTLE[point])
+          if np.isnan(localError) and (np.linalg.norm(fvcFTLE[point] - LTFTLE_T[point]) == 0. and np.linalg.norm(fvcFTLE[point]) == 0.):
             local_error = 0.
           error[point] = localError
 
@@ -95,7 +97,7 @@ if makePlots:
 
         # Plot FTLE vs. vertical position for discrete horizontal location in the domain
         plt.figure()
-        plt.plot(dbjFTLE_T, s_Points)
+        plt.plot(LTFTLE_T, s_Points)
         plt.ylim(0., 6.)
         plt.xlim(0., 80.)
         plt.ylabel(r'Arc Length')
@@ -106,14 +108,15 @@ if makePlots:
         plt.close()
 
       if no_T:
-        dbjFTLE_noT  = dbjDF['ftle - No T']
-        dbjFTLE_noT  = dbjFTLE_noT.to_numpy()
+        LTFTLE_noT  = LTDF['ftle - No T']
+        LTFTLE_noT  = LTFTLE_noT.to_numpy()
 
         error = np.zeros(numDataPoints, dtype=np.float64)
         for point in range(numDataPoints):
-          localError   = np.linalg.norm(fvcFTLE[point] - dbjFTLE_noT[point])#/np.linalg.norm(fvcFTLE[point])
-          #if np.isnan(localError) and (np.linalg.norm(fvcFTLE[point] - dbjFTLE_noT[point]) == 0. and np.linalg.norm(fvcFTLE[point]) == 0.):
-            #local_error = 0.
+          localError   = np.linalg.norm(fvcFTLE[point] - LTFTLE_noT[point])/np.linalg.norm(fvcFTLE[point])
+          # Workaround for 0's
+          if np.isnan(localError) and (np.linalg.norm(fvcFTLE[point] - LTFTLE_noT[point]) == 0. and np.linalg.norm(fvcFTLE[point]) == 0.):
+            local_error = 0.
           error[point] = localError
 
         # Calculate total error between FTLE data sets along the line
@@ -122,7 +125,7 @@ if makePlots:
 
         # Plot FTLE vs. vertical position for discrete horizontal location in the domain
         plt.figure()
-        plt.plot(dbjFTLE_noT, s_Points)
+        plt.plot(LTFTLE_noT, s_Points)
         plt.ylim(0., 6.)
         plt.xlim(0., 10.)
         plt.ylabel(r'Arc Length')
@@ -149,7 +152,7 @@ if not makePlots:
 
 if fdls:
   # Load boundary data
-  boundaryPts = np.loadtxt('/home/zach/Documents/Mukherjee/Lagrangian-Toolkit/Code/Data_FD/LS_Boundary_Points.csv', delimiter=',')
+  boundaryPts = np.loadtxt('/dir/LS_Boundary_Points.csv', delimiter=',')
   # Make boxplots for errors during the whole integration window
   if w_T:
     fig, ax = plt.subplots()
@@ -182,6 +185,5 @@ if fdls:
     plt.savefig(pngDir + 'FDLS_NoT_Errors_zoomed.png')
     plt.show()
     plt.close()
-
 
 print("Done!")
